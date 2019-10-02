@@ -13,8 +13,4 @@ class Controller
     {
         return 'about from controller';
     }
-
-
-
-
 }

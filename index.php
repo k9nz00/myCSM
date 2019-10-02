@@ -1,10 +1,10 @@
 <?php
 
+require_once 'bootstrap.php';
+
 use src\Application;
 use src\Controller;
 use src\Router;
-
-require_once 'bootstrap.php';
 
 $router = new Router();
 $router->get('/', Controller::class . '@index');
