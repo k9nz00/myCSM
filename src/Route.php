@@ -2,6 +2,8 @@
 
 namespace src;
 
+require_once 'Controller.php';
+
 class Route
 {
     private $path;
