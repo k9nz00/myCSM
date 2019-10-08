@@ -1,8 +1,8 @@
 <?php
 
-namespace src;
+namespace App;
 
-require_once 'Controller.php';
+require_once 'src/controllers/MainController.php';
 
 class Route
 {

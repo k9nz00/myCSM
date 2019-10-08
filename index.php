@@ -2,13 +2,13 @@
 
 require_once 'bootstrap.php';
 
-use src\Application;
-use src\Controller;
-use src\Router;
+use App\Application;
+use App\MainController;
+use App\Router;
 
 $router = new Router();
-$router->get('/', Controller::class . '@index');
-$router->get('/about', Controller::class . '@about');
+$router->get('/', MainController::class . '@index');
+$router->get('/about', MainController::class . '@about');
 $router->get('/company', function () {
     return 'company';
 });

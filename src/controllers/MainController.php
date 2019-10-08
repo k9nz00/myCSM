@@ -1,8 +1,8 @@
 <?php
 
-namespace src;
+namespace App;
 
-class Controller
+class MainController
 {
     public function index()
     {

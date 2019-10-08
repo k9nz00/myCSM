@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace App;
 
 require_once 'Route.php';
 
