@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+
+namespace App\Controllers;
+
 
 class MainController
 {
@@ -13,4 +15,5 @@ class MainController
     {
         return 'about from controller';
     }
+
 }

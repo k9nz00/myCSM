@@ -2,7 +2,7 @@
 
 namespace App;
 
-require_once 'src/controllers/MainController.php';
+
 
 class Route
 {
@@ -29,11 +29,6 @@ class Route
     public function getPath()
     {
         return $this->path;
-    }
-
-    protected function getMethod()
-    {
-        return 'GET';
     }
 
     public function currentURI()

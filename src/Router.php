@@ -2,20 +2,18 @@
 
 namespace App;
 
-require_once 'Route.php';
-
 class Router
 {
-    private $routes = [];
+    private static $routes = [];
 
-    public function get($path, $callback)
+    public static function get($path, $callback)
     {
-        $this->routes[] = new Route($path, $callback);
+        self::$routes[] = new Route($path, $callback);
     }
 
     public function dispatch(Application $app)
     {
-        foreach ($this->routes as $route) {
+        foreach (self::$routes as $route) {
 
             /**
              * @var Route $route
