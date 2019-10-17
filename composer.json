@@ -3,12 +3,13 @@
     "authors": [
         {
             "name": "Andrey Semka",
-            "email": "k9nz00@yandex.ru"
+            "email": "admin@mail.com"
         }
     ],
     "require": {},
     "autoload": {
         "psr-4": {
+            "cms\\": "vendor/cms/core",
             "App\\": "src"
         },
         "files": [
