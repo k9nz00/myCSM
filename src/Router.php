@@ -15,10 +15,7 @@ class Router
 	{
 		foreach (self::$routes as $route)
 		{
-
-			/**
-			 * @var Route $route
-			 */
+			/**@var Route $route*/
 			if ($route->currentURI() == $route->getPath())
 			{
 				return $route->run($app);

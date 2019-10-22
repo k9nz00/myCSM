@@ -1,0 +1,1 @@
+<h1 class="alert alert-success"><?php echo $title ?></h1>

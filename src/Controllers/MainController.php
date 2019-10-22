@@ -2,16 +2,18 @@
 
 namespace App\Controllers;
 
+use cms\base\View;
+
 class MainController
 {
     public function index()
     {
-        return 'home from controller';
+		return new View('index', ['title'=>'Index Page']);
     }
 
     public function about()
     {
-        return 'about from controller';
+		return new View('about.index', ['title'=>'About Page']);
     }
 
 }

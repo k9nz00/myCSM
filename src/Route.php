@@ -2,8 +2,6 @@
 
 namespace App;
 
-
-
 class Route
 {
     private $path;

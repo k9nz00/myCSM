@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Interfaces\Renderable;
+use cms\Interfaces\Renderable;
 
 class Application
 {
