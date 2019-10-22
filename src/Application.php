@@ -2,21 +2,38 @@
 
 namespace App;
 
+use App\Interfaces\Renderable;
+
 class Application
 {
-    private $router;
+	private $router;
 
-    /**
-     * Application constructor.
-     * @param Router $router
-     */
-    public function __construct(Router $router)
-    {
-        $this->router = $router;
-    }
+	/**
+	 * Application constructor.
+	 *
+	 * @param Router $router
+	 */
+	public function __construct(Router $router)
+	{
+		$this->router = $router;
+	}
 
-    public function run()
-    {
-        echo $this->router->dispatch($this);
-    }
+	protected function render()
+	{
+
+	}
+
+	public function run()
+	{
+		if ($this->router->dispatch($this) instanceof Renderable)
+		{
+			$this->render();
+		}
+		else
+		{
+			echo $this->router->dispatch($this);
+		}
+
+	}
+
 }
