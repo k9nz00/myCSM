@@ -23,6 +23,7 @@ class View implements Renderable
 
 	/**
 	 * Дефолтный шаблон
+	 * 	@todo переделать и дать возможность подключать желаемый шаблон
 	 *
 	 * @var string $layout
 	 */
