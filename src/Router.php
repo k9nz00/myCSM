@@ -13,11 +13,9 @@ class Router
 
     public function dispatch(Application $app)
     {
-        foreach (self::$routes as $route)
-        {
+        foreach (self::$routes as $route) {
             /**@var Route $route */
-            if ($route->currentURI() == $route->getPath())
-            {
+            if ($route->currentURI() == $route->getPath()) {
                 return $route->run($app);
             }
         }

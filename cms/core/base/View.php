@@ -48,7 +48,7 @@ class View implements Renderable
         if (file_exists($viewFile))
         {
             ob_start();
-            require_once $viewFile;
+            require $viewFile;
             $content = ob_get_clean();
         } else
         {
@@ -57,7 +57,7 @@ class View implements Renderable
 
         if (is_file(self::LAYOUT))
         {
-            require_once $this->layout;
+            require $this->layout;
         } else
         {
             throw new Exception("На найден шаблон {$this->layout}", 500);

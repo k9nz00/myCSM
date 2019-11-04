@@ -15,8 +15,7 @@ class Route
 
     private function prepareCallback($callback)
     {
-        if (is_callable($callback))
-        {
+        if (is_callable($callback)) {
             return $callback;
         }
         return function () use ($callback)
