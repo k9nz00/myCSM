@@ -18,15 +18,10 @@ class Application
         $this->router = $router;
     }
 
-    protected function render()
-    {
-        echo "test";
-    }
-
     public function run()
     {
         if ($this->router->dispatch($this) instanceof Renderable) {
-            //$this->router->dispatch($this)->render(); - не понимаю зачем вызывать этот метод???
+            $this->router->dispatch($this)->render();
         } else {
             echo $this->router->dispatch($this);
         }

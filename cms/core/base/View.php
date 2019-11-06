@@ -35,31 +35,26 @@ class View implements Renderable
         $this->view = $view;
         $this->data = $data;
         $this->layout = self::LAYOUT;
-        $this->render($this->view, $this->data);
+//        $this->render($this->view, $this->data);
     }
 
-    public function render($view, $data)
+    public function render()
     {
-        if (is_array($data))
-        {
-            extract($data);
+        if (is_array($this->data)) {
+            extract($this->data);
         }
-        $viewFile = VIEW_DIR . str_replace('.', '/', $view) . '.php';
-        if (file_exists($viewFile))
-        {
+        $viewFile = VIEW_DIR . str_replace('.', '/', $this->view) . '.php';
+        if (file_exists($viewFile)) {
             ob_start();
             require $viewFile;
             $content = ob_get_clean();
-        } else
-        {
+        } else {
             throw new Exception("На найден вид {$viewFile}", 500);
         }
 
-        if (is_file(self::LAYOUT))
-        {
+        if (is_file(self::LAYOUT)) {
             require $this->layout;
-        } else
-        {
+        } else {
             throw new Exception("На найден шаблон {$this->layout}", 500);
         }
     }
