@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Base\BaseController\Controller;
+use App\Base\BaseView\View;
 
-
-use cms\base\View;
-
-class MainController
+class MainController extends Controller
 {
     public function index()
     {
@@ -17,5 +16,4 @@ class MainController
     {
         return new View('about.index', ['title' => 'About Page']);
     }
-
 }

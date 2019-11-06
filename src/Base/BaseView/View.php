@@ -1,8 +1,8 @@
 <?php
 
-namespace cms\base;
+namespace App\Base\BaseView;
 
-use cms\Interfaces\Renderable;
+use App\Base\BaseView\Interfaces\Renderable;
 use Exception;
 
 class View implements Renderable
@@ -35,7 +35,6 @@ class View implements Renderable
         $this->view = $view;
         $this->data = $data;
         $this->layout = self::LAYOUT;
-//        $this->render($this->view, $this->data);
     }
 
     public function render()

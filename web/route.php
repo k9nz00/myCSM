@@ -1,8 +1,8 @@
 <?php
 
+use App\Base\BaseView\View;
 use App\Controllers\MainController;
 use App\Router;
-use cms\base\View;
 
 Router::get('/', MainController::class . "@index");
 Router::get('/about', MainController::class . '@about');

@@ -1,7 +1,6 @@
 <?php
 
-
-namespace cms\Interfaces;
+namespace App\Base\BaseView\Interfaces;
 
 
 interface Renderable
