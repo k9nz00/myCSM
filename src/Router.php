@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exception\NotFoundException;
+
 class Router
 {
     private static $routes = [];
@@ -13,14 +15,18 @@ class Router
 
     public function dispatch(Application $app)
     {
+        $routeFound = false;
         foreach (self::$routes as $route) {
             /**@var Route $route */
             if ($route->currentURI() == $route->getPath()) {
+                $routeFound = true;
                 return $route->run($app);
             }
         }
 
-        return 'Страница на найдена';
+        if ($routeFound == false) {
+            throw new NotFoundException('Страница не найдена', 404);
+        }
     }
 }
 
