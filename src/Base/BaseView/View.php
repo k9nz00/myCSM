@@ -2,7 +2,7 @@
 
 namespace App\Base\BaseView;
 
-use App\Base\BaseView\Interfaces\Renderable;
+use App\Interfaces\Renderable;
 use Exception;
 
 class View implements Renderable
@@ -24,7 +24,7 @@ class View implements Renderable
 
     /**
      * Дефолтный шаблон
-     * @todo переделать и дать возможность подключать желаемый шаблон
+     * @fixme переделать и дать возможность подключать желаемый шаблон
      *
      * @var string $layout
      */

@@ -2,7 +2,9 @@
 
 namespace App;
 
-use App\Base\BaseView\Interfaces\Renderable;
+
+use App\Interfaces\Renderable;
+use Exception;
 
 class Application
 {
@@ -20,11 +22,17 @@ class Application
 
     public function run()
     {
-        if ($this->router->dispatch($this) instanceof Renderable) {
-            $this->router->dispatch($this)->render();
-        } else {
-            echo $this->router->dispatch($this);
-        }
+    	try {
+			if ($this->router->dispatch($this) instanceof Renderable) {
+				$this->router->dispatch($this)->render();
+			} else {
+				echo $this->router->dispatch($this);
+			}
+
+		} catch (Exception $e) {
+
+		}
+
     }
 }
 
