@@ -1,5 +1,10 @@
-    Require all granted
-    RewriteEngine on
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . index.php
+php_flag display_errors On
+
+#показать все ошибки
+php_value error_reporting "E_ALL"
+
+Require all granted
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
