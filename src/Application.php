@@ -4,6 +4,7 @@ namespace App;
 
 use App\Exception\NotFoundException;
 use App\Interfaces\Renderable;
+use Exception;
 
 class Application
 {
@@ -19,14 +20,15 @@ class Application
         $this->router = $router;
     }
 
-    /**
-     * @param NotFoundException $e
-     * @return string
-     */
+	/**
+	 * @param NotFoundException $e
+	 * @return string
+	 * @throws Exception
+	 */
     public function renderException(NotFoundException $e)
     {
         if ($e instanceof Renderable) {
-            return $e->render();
+            return $e->render()->render();
         } else {
             $e->errorCode = $e->getCode() ? $e->getCode() : 500;
             echo $e->getMessage();
@@ -42,7 +44,7 @@ class Application
                 echo $this->router->dispatch($this);
             }
         } catch (NotFoundException $e) {
-            echo $this->renderException($e);
+            return $this->renderException($e);
         }
     }
 }
