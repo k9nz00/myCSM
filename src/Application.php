@@ -28,7 +28,7 @@ class Application
     public function renderException(NotFoundException $e)
     {
         if ($e instanceof Renderable) {
-            return $e->render()->render();
+            return $e->render();
         } else {
             $e->errorCode = $e->getCode() ? $e->getCode() : 500;
             echo $e->getMessage();
