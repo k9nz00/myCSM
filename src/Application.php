@@ -38,10 +38,11 @@ class Application
     public function run()
     {
         try {
-            if ($this->router->dispatch($this) instanceof Renderable) {
-                $this->router->dispatch($this)->render();
+            $data = $this->router->dispatch($this);
+            if ($data instanceof Renderable) {
+                $data->render();
             } else {
-                echo $this->router->dispatch($this);
+                echo $data;
             }
         } catch (NotFoundException $e) {
             return $this->renderException($e);
