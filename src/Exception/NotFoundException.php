@@ -10,7 +10,10 @@ class NotFoundException extends HttpException implements Renderable
 {
     public function render()
     {
-        $errorView = new View('errors.404', ['test']);
+        $message  = $this->getMessage();
+
+        $errorView = new View('errors.404', ['message'=>$message]);
+        $errorView->layout = ERROR_LAYOUT;
         return $errorView->render();
     }
 }

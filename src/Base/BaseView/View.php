@@ -7,10 +7,11 @@ use Exception;
 
 class View implements Renderable
 {
-    const LAYOUT = LAYOUTS_DIR . 'default/default.php';
+    /** Дефолтный шаблон  */
+    const LAYOUT = DEFAULT_LAYOUT;
+
     /**
      * Подключаемый шаблон
-     *
      * @var string $view
      */
     public $view;
@@ -34,7 +35,7 @@ class View implements Renderable
     {
         $this->view = $view;
         $this->data = $data;
-        $this->layout = self::LAYOUT;
+        $this->layout = static::LAYOUT;
     }
 
     public function render()
@@ -51,7 +52,7 @@ class View implements Renderable
             throw new Exception("На найден вид {$viewFile}", 500);
         }
 
-        if (is_file(self::LAYOUT)) {
+        if (is_file($this->layout)) {
             require $this->layout;
         } else {
             throw new Exception("На найден шаблон {$this->layout}", 500);

@@ -25,7 +25,8 @@ class Router
         }
 
         if ($routeFound == false) {
-            throw new NotFoundException('Страница не найдена', 404);
+            throw new NotFoundException('Страница по адресу ' . '\'' . $_SERVER['REQUEST_URI'] . '\'' . ' не найдена',
+                404);
         }
     }
 }

@@ -45,6 +45,7 @@ class Application
                 echo $data;
             }
         } catch (NotFoundException $e) {
+
             return $this->renderException($e);
         }
     }
