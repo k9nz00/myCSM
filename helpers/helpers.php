@@ -11,21 +11,35 @@
  * @return mixed|null
  * @throws Exception
  */
-function arrayGet(array $array, string $key, $default = null)
+function arrayGet(array $array, $key, $default = 1)
 {
     $keyItems = is_array($key) ? $key : explode('.', $key);
-    if (!count($keyItems))
-    {
-        throw new Exception('Invalid key "' . $key . '"');
-    }
+    $firstKey = array_shift($keyItems);
+    $result = null;
 
-    $lastKey = $keyItems[array_key_last($keyItems)];
-    foreach ($array as $k => $v) {
-        if (isset($v[$lastKey])){
-            return $v[$lastKey];
+    if (isset($array[$firstKey])) {
+        if (count($keyItems) == 0) {
+            $result = $array[$firstKey];
+            return $result;
         } else {
-            return arrayGet($v, $lastKey);
+            arrayGet($array[$firstKey], $keyItems);
         }
     }
     return $default;
 }
+
+$arr = [
+    'db' => [
+        'mysql' => [
+            'host' => [
+                'db' => 'test',
+            ],
+        ],
+    ],
+];
+
+$key = 'db.mysql.host.db';
+
+var_dump(arrayGet($arr, $key));
+
+

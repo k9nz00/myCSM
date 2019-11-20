@@ -5,7 +5,7 @@ namespace App;
 final class Config
 {
     /** @var array $configs */
-    protected $configs;
+    public $configs;
 
     protected static $instance;
 
@@ -22,9 +22,9 @@ final class Config
         return self::$instance;
     }
 
-    protected function getConfig(array $config, $default = null)
+    public function getConfig($config, $default = null)
     {
-        arrayGet($this->configs, $config);
+        return arrayGet($this->configs, $config);
     }
 }
 
