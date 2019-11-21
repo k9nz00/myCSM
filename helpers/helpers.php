@@ -19,10 +19,9 @@ function arrayGet(array $array, $key, $default = 1)
 
     if (isset($array[$firstKey])) {
         if (count($keyItems) == 0) {
-            $result = $array[$firstKey];
-            return $result;
+            return $array[$firstKey];
         } else {
-            arrayGet($array[$firstKey], $keyItems);
+			return arrayGet($array[$firstKey], $keyItems);
         }
     }
     return $default;
