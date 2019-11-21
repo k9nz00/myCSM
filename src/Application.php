@@ -5,6 +5,7 @@ namespace App;
 use App\Exception\NotFoundException;
 use App\Interfaces\Renderable;
 use Exception;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Application
 {
@@ -18,13 +19,14 @@ class Application
     public function __construct(Router $router)
     {
         $this->router = $router;
+        $this->initialize();
     }
 
-	/**
-	 * @param NotFoundException $e
-	 * @return string
-	 * @throws Exception
-	 */
+    /**
+     * @param NotFoundException $e
+     * @return string
+     * @throws Exception
+     */
     public function renderException(NotFoundException $e)
     {
         if ($e instanceof Renderable) {
@@ -48,5 +50,23 @@ class Application
 
             return $this->renderException($e);
         }
+    }
+
+    protected function initialize()
+    {
+        $capsule = new Capsule;
+        $capsule->addConnection([
+            'driver'    => 'mysql',
+            'host'      => Config::getInstance()->get('host'),
+            'database'  => Config::getInstance()->get('DBName'),
+            'username'  => Config::getInstance()->get('userName'),
+            'password'  => Config::getInstance()->get('userPassword'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+
     }
 }

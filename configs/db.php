@@ -1,7 +1,8 @@
 <?php
 return [
+    'fileName'     => __FILE__,
     'host'         => 'localhost',
-    'userName'     => '',
-    'userPassword' => '',
-    'DBName'       => '',
+    'userName'     => 'root',
+    'userPassword' => 'root',
+    'DBName'       => 'mycms',
 ];

@@ -11,7 +11,7 @@
  * @return mixed|null
  * @throws Exception
  */
-function arrayGet(array $array, $key, $default = 1)
+function arrayGet(array $array, $key, $default = null)
 {
     $keyItems = is_array($key) ? $key : explode('.', $key);
     $firstKey = array_shift($keyItems);
@@ -26,19 +26,5 @@ function arrayGet(array $array, $key, $default = 1)
     }
     return $default;
 }
-
-$arr = [
-    'db' => [
-        'mysql' => [
-            'host' => [
-                'db' => 'test',
-            ],
-        ],
-    ],
-];
-
-$key = 'db.mysql.host.db';
-
-var_dump(arrayGet($arr, $key));
 
 

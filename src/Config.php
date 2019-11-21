@@ -22,9 +22,9 @@ final class Config
         return self::$instance;
     }
 
-    public function getConfig($config, $default = null)
+    public function get(string $config, $default = null)
     {
-        return arrayGet($this->configs, $config);
+        return arrayGet($this->configs, $config, $default);
     }
 }
 
