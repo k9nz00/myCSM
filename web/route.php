@@ -9,5 +9,5 @@ Router::get('/about', MainController::class . '@about');
 
 Router::get('/company', function ()
 {
-    return new View('index', ['title' => 'company page']);
+    return new View('company.index', ['title' => 'company page']);
 });

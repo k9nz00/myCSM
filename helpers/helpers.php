@@ -21,10 +21,19 @@ function arrayGet(array $array, $key, $default = null)
         if (count($keyItems) == 0) {
             return $array[$firstKey];
         } else {
-			return arrayGet($array[$firstKey], $keyItems);
+            return arrayGet($array[$firstKey], $keyItems);
         }
     }
     return $default;
 }
 
-
+/** Функция для распечатки данных в браузер для удобного просмотра
+ * @param mixed $data
+ */
+function dd($data)
+{
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+    exit();
+}

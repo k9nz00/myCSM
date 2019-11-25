@@ -6,6 +6,7 @@ class Route
 {
     private $path;
     private $callback;
+    private $method;
 
     public function __construct($path, $callback)
     {
