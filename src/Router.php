@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Base\Routes\GetRoute;
+use App\Base\Routes\Interfaces\RouteInterface;
+use App\Base\Routes\PostRoute;
 use App\Exception\NotFoundException;
 
 class Router
@@ -10,15 +13,20 @@ class Router
 
     public static function get($path, $callback)
     {
-        self::$routes[] = new Route($path, $callback);
+        self::$routes[] = new GetRoute($path, $callback);
+    }
+
+    public static function post($path, $callback)
+    {
+        self::$routes[] = new PostRoute($path, $callback);
     }
 
     public function dispatch(Application $app)
     {
         $routeFound = false;
         foreach (self::$routes as $route) {
-            /**@var Route $route */
-            if ($route->currentURI() == $route->getPath()) {
+            /**@var RouteInterface $route */
+            if ($route->match()) {
                 $routeFound = true;
                 return $route->run($app);
             }
