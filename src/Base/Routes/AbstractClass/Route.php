@@ -16,6 +16,8 @@ abstract class Route implements RouteInterface
         $this->path = '/' . trim($path, '/');
         $this->callback = $this->prepareCallback($callback);
         $this->method = $this->getMethod();
+
+//        $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/', $this->path);
     }
 
     protected function prepareCallback($callback)
@@ -39,9 +41,14 @@ abstract class Route implements RouteInterface
         return $_SERVER['REQUEST_METHOD'] == $this->getMethod() && $this->getPath() == $this->currentURI();
     }
 
-    public function currentURI()
+    public function currentURI() : string
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    }
+
+    public function currentQuery() : string
+    {
+        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
     }
 
     public function run(Application $app)
