@@ -31,10 +31,6 @@ class Router
                 return $route->run($app);
             }
         }
-
-        /**
-         * @fixme доработать - ошибочный url должен показывать (при наличии) get параметры
-         */
         if ($routeFound == false) {
             throw new NotFoundException('Страница по адресу ' . '\'' . $_SERVER['REQUEST_URI'] . '\'' . ' не найдена',
                 404);
