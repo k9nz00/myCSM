@@ -11,7 +11,7 @@ final class Config
 
     private function __construct()
     {
-        $this->configs = require_once 'configs/db.php';
+        $this->configs = require_once 'src/configs/db.php';
     }
 
     public static function getInstance(): Config
