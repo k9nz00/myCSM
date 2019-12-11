@@ -15,6 +15,6 @@ Router::get('/company', function () {
 //    return "Test page with param1=$param1 param2=$param2";
 //});
 
-Router::get('test/*', function ($param1){
-    return $param1;
+Router::get('test/*', function (){
+    echo 1;
 });
