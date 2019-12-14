@@ -36,13 +36,12 @@ abstract class Route implements RouteInterface
 
     public function match(): bool
     {
-        //        $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/', $this->path);
-        $result =
-            ($_SERVER['REQUEST_METHOD'] == $this->getMethod())
-            && $this->getPath() == $this->currentURI()
-            && $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/', $this->path);
+        $var1 = $_SERVER['REQUEST_METHOD'] == $this->getMethod();
 
-        return  $result;
+        $var3 =$this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/', $this->currentURI());
+
+//        $var2 = $this->getPath() == $this->currentURI();
+        return  $var1 && $var3;
     }
 
     public function currentURI(): string
