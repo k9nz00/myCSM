@@ -21,4 +21,14 @@ class MainController extends Controller
     {
         return new View('about.index', ['title' => 'About Page']);
     }
+
+    public function test1($params)
+    {
+        var_dump($params);
+    }
+
+    public function test2($params)
+    {
+        var_dump($params);
+    }
 }

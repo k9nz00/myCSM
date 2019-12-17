@@ -10,12 +10,14 @@ abstract class Route implements RouteInterface
     protected $path;
     protected $callback;
     protected $method;
+    protected $params;
 
     public function __construct($path, $callback)
     {
         $this->path = '/' . trim($path, '/');
         $this->callback = $this->prepareCallback($callback);
         $this->method = $this->getMethod();
+        $this->params = $this->getParams($this->currentURI());
     }
 
     protected function prepareCallback($callback)
@@ -25,6 +27,9 @@ abstract class Route implements RouteInterface
         }
         return function () use ($callback) {
             [$class, $method] = explode('@', $callback);
+            if (!empty($this->params)) {
+                return (new $class)->{$method}($this->params);
+            }
             return (new $class)->{$method}();
         };
     }
@@ -36,12 +41,9 @@ abstract class Route implements RouteInterface
 
     public function match(): bool
     {
-        $var1 = $_SERVER['REQUEST_METHOD'] == $this->getMethod();
-
-        $var3 =$this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/', $this->currentURI());
-
-//        $var2 = $this->getPath() == $this->currentURI();
-        return  $var1 && $var3;
+        return $_SERVER['REQUEST_METHOD'] == $this->getMethod()
+            && $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/',
+                $this->currentURI());
     }
 
     public function currentURI(): string
@@ -56,8 +58,21 @@ abstract class Route implements RouteInterface
 
     public function run(Application $app)
     {
-        return call_user_func_array($this->callback, [$app]);
+        return call_user_func_array($this->callback, $this->params);
     }
 
     abstract protected function getMethod(): string;
+
+    private function getParams(string $uri): array
+    {
+        $paths = explode('/', trim($this->path));
+        $uris = explode('/', trim($uri));
+        $params = [];
+        for ($i = 0; $i < count($paths); $i++) {
+            if ($paths[$i] == '*') {
+                @$params[] = $uris[$i];
+            }
+        }
+        return $params;
+    }
 }

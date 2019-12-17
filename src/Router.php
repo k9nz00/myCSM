@@ -27,14 +27,11 @@ class Router
         foreach (self::$routes as $route) {
             /**@var RouteInterface $route */
             if ($route->match()) {
-                $routeFound = true;
                 return $route->run($app);
             }
         }
-        if ($routeFound == false) {
-            throw new NotFoundException('Страница по адресу ' . '\'' . $_SERVER['REQUEST_URI'] . '\'' . ' не найдена',
-                404);
-        }
+        throw new NotFoundException('Страница по адресу ' . '\'' . $_SERVER['REQUEST_URI'] . '\'' . ' не найдена',
+            404);
     }
 }
 

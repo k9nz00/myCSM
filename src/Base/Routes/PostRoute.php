@@ -10,5 +10,4 @@ class PostRoute extends Route
     {
         return 'POST';
     }
-
 }
