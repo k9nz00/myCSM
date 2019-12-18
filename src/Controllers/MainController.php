@@ -13,7 +13,6 @@ class MainController extends Controller
     {
         $books = Book::all();
         $title = 'Hello world!';
-
         return new View('index', compact('books', 'title'));
     }
 
@@ -27,8 +26,9 @@ class MainController extends Controller
         var_dump($params);
     }
 
-    public function test2($params)
+    public function test2($params1, $params2)
     {
-        var_dump($params);
+        var_dump($params1);
+        var_dump((int)$params2);
     }
 }

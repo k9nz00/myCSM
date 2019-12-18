@@ -27,10 +27,7 @@ abstract class Route implements RouteInterface
         }
         return function () use ($callback) {
             [$class, $method] = explode('@', $callback);
-            if (!empty($this->params)) {
-                return (new $class)->{$method}($this->params);
-            }
-            return (new $class)->{$method}();
+            return (new $class)->{$method}(...$this->params);
         };
     }
 
@@ -70,7 +67,9 @@ abstract class Route implements RouteInterface
         $params = [];
         for ($i = 0; $i < count($paths); $i++) {
             if ($paths[$i] == '*') {
-                @$params[] = $uris[$i];
+                if (isset($uris[$i])) {
+                    $params[] = $uris[$i];
+                }
             }
         }
         return $params;
