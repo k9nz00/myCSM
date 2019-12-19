@@ -38,9 +38,12 @@ abstract class Route implements RouteInterface
 
     public function match(): bool
     {
-        return $_SERVER['REQUEST_METHOD'] == $this->getMethod()
-            && $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $this->getPath()) . '$/',
-                $this->currentURI());
+        $v1 = preg_replace('/\{(\w+?)\}/is', '*', $this->getPath());
+
+        $v2 = $_SERVER['REQUEST_METHOD'] == $this->getMethod();
+        $v3 = $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $v1) . '$/',
+            $this->currentURI());
+        return $v2 && $v3;
     }
 
     public function currentURI(): string
@@ -62,9 +65,17 @@ abstract class Route implements RouteInterface
 
     private function getParams(string $uri): array
     {
-        $paths = explode('/', trim($this->path));
-        $uris = explode('/', trim($uri));
         $params = [];
+
+        $v1 = preg_replace('/\{(\w+?)\}/is', '*', $this->getPath());
+//        $v3 = $this->path = preg_match('/^' . str_replace(['*', '/'], ['\w+', '\/'], $v1) . '$/',
+//            $this->currentURI());
+
+
+        $paths = explode('/', trim($v1));
+        $uris = explode('/', trim($uri));
+
+//
         for ($i = 0; $i < count($paths); $i++) {
             if ($paths[$i] == '*') {
                 if (isset($uris[$i])) {
