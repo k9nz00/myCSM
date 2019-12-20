@@ -31,4 +31,9 @@ class MainController extends Controller
         var_dump($params1);
         var_dump((int)$params2);
     }
+
+    public function test3()
+    {
+
+    }
 }
