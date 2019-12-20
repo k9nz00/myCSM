@@ -38,6 +38,8 @@ abstract class Route implements RouteInterface
 
     public function match(): bool
     {
+        //избавиться от двойной замены.
+        //в $v1  сраху менять на "\w+" и проверять регуляркой
         $v1 = preg_replace('/\{(\w+?)\}/is', '*', $this->getPath());
 
         $v2 = $_SERVER['REQUEST_METHOD'] == $this->getMethod();
@@ -77,6 +79,8 @@ abstract class Route implements RouteInterface
 
 //
         for ($i = 0; $i < count($paths); $i++) {
+            //проверять значение $paths[$i] на соответсвие регулярному выражению и если true,
+            //то проходить дальше. Убрать замену и работу со звездоской
             if ($paths[$i] == '*') {
                 if (isset($uris[$i])) {
                     $params[] = $uris[$i];
